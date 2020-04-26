@@ -15,6 +15,6 @@ namespace Marvel.Api.Controllers
         public async Task<Personagem> Get()
         {
             return await service.ObterPersonagemAsync("Captain America");
-        }
+        }   
     }
 }

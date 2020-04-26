@@ -32,9 +32,9 @@ namespace Marvel.Api
                 return new Configuracao(uri, publicKey, privateKey);
             });
 
-
-            services.AddControllers();
             services.AddHttpClient();
+            services.AddControllers();
+
             services.AddHttpContextAccessor();
         }
 
