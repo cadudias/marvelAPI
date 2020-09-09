@@ -19,7 +19,8 @@ namespace Marvel.Api
 
         public async Task<Personagem> ObterPersonagemAsync(string nome)
         {
-            HttpResponseMessage response = await client.GetAsync(new Uri(GerarUrl(nome)));
+            var url = new Uri(GerarUrl(nome));
+            HttpResponseMessage response = await client.GetAsync(url);
 
             if (!response.IsSuccessStatusCode)
                 return new Personagem();

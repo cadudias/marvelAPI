@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using FakeItEasy;
-using Autofac.Extras.FakeItEasy;
 using FluentAssertions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
@@ -12,6 +11,8 @@ using System.Net.Http;
 using System.Net;
 using System.Text.Json;
 using Bogus;
+using Marvel.Api;
+using Autofac.Extras.FakeItEasy;
 
 namespace MarvelApi.Testes
 {
@@ -43,6 +44,8 @@ namespace MarvelApi.Testes
                 .Build();
 
             AutoFake.Provide(config);
+
+            AutoFake.Provide(new Configuracao(new Uri(config.GetSection("MarvelComicsAPI:BaseURL").Value), config.GetSection("MarvelComicsAPI:PublicKey").Value, config.GetSection("MarvelComicsAPI:PrivateKey").Value));
 
             relogio = A.Fake<Relogio>();
             A.CallTo(() => relogio.DataAtual).Returns(DateTime.Now);
